@@ -4,7 +4,7 @@
     <div class="languages">
         <div class="lang">ZH</div>
         <div class="lang">CN</div>
-        <div class="lang">CN</div>
+        <div class="lang">EN</div>
     </div>
 
 
@@ -116,7 +116,7 @@ html,body
     // position: absolute
     // left: 89%
     text-align: center
-    background-color: $color-red
+    background-color: $color_red
     margin-top: 15px
     
 

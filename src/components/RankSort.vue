@@ -426,7 +426,7 @@ html,body
     width: 100%
 
 .modal-title
-    margin-bottom: 30px
+    margin-bottom: 30px !important
     
 .tab-content
     margin-bottom: 30px
