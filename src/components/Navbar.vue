@@ -7,6 +7,7 @@
         <div class="lang">CN</div>
     </div>
 
+
     <div class="dropdown">
         <div class="toggle"
         id="dropdownMenuButton" data-toggle="dropdown" 
@@ -14,15 +15,14 @@
              <div class="hamburger"></div>
              <div class="hamburger"></div>
              <div class="hamburger"></div>
-        </div>
-        
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        </div> 
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">
+                
+            </a>
             <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-        
-        
+        </div>  
     </div>
 
      
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+
 export default {
     data: function(){
         return{
@@ -112,8 +113,8 @@ html,body
     margin-bottom: 5px
     cursor: pointer
 .dropdown-menu
-    position: absolute
-    left: 89%
+    // position: absolute
+    // left: 89%
     text-align: center
     background-color: $color-red
     margin-top: 15px
@@ -135,6 +136,7 @@ html,body
     line-height: 30px
     &:hover
         background-color: rgba(255, 255, 255, 0.35)
+
 
     
 

@@ -451,7 +451,7 @@ ul
     .sec_layer
       position: absolute
       left: -41px
-      top: 40px
+      top: 39px
       min-width: 150px
       display: none
       transition-duration: 0.2s

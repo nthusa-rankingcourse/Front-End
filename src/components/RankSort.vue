@@ -1,3 +1,4 @@
+
 <template>
 <div class="rankpage">
    
@@ -90,10 +91,15 @@
                 
                  
                 <div class="comment">
-                    <h2>留言區</h2>
+                    <h2 data-toggle="tooltip" data-placement="left" title="我們支援Markdown語法！">留言區</h2>
                     <form  v-on:submit.prevent='submit' >
                         <div class="form-group">
+
+                            
+                            
+                            
                             <textarea required="required" placeholder="在想些什麼？" v-model='input' class="form-control" ></textarea>
+                            
                         </div>
                         <button class="btn btn-info" >送出</button>
                         <br />
@@ -108,21 +114,21 @@
                     <div class="list-group" >
 							<div class="list-group-item" v-for= "(comment,idx) in courses[idx].comments" :key="idx" >
 								<strong>{{student_id}}   {{name}}</strong> 
-                                <p>
-                                    {{comment.comment}}
-                                </p>
+                                <p class="content"><vue-markdown :linkify="true" :emoji="true"
+                                table-class="table table-striped" >{{comment.comment}}</vue-markdown></p>
 								<div class="like">
 									<img class="like_img" src="../static/thumb-up.svg" alt="" v-on:click='like(idx)' v-if="comment.islike==false">
                                     <img class="like_img" src="../static/thumb-up-red.svg" alt="" v-on:click='like(idx)' v-if="comment.islike==true">
 									<div class="like_text" v-if="comment.total_likes>0"> {{comment.total_likes}}</div> 
-                                     
                                 </div>
+                                
                                 <div class="dislike">
                                     <img class="dislike_img" src="../static/thumb-down.svg" alt="" v-on:click='dislike(idx)' v-if="comment.isdislike==false">
                                     <img class="dislike_img" src="../static/thumb-down-blue.svg" alt="" v-on:click='dislike(idx)' v-if="comment.isdislike==true">
 									<div class="dislike_text" v-if="comment.total_dislikes>0">{{comment.total_dislikes}}</div>   
                                     
 								</div>
+                                
                                 
 								
 							</div>
@@ -131,6 +137,7 @@
             </div>
             <img class="fix" data-toggle="tooltip" data-placement="left" title="點我為這堂課評分！" src="../static/paper-plane.svg" alt="">
             <div class="modal-footer">
+                
                 
             </div>
             </div>
@@ -149,6 +156,8 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
@@ -200,6 +209,10 @@ export default {
             ]
         };
     },
+    
+    components:{
+        VueMarkdown
+    },
     methods:{
         window: function(idx){
             this.idx=idx;
@@ -220,13 +233,26 @@ export default {
 			this.courses[this.idx].total_comment = this.courses[this.idx].comments.length;
         },
         like(index) {
-            this.courses[this.idx].comments[index].total_likes = this.courses[this.idx].comments[index].total_likes + 1
-            this.courses[this.idx].comments[index].islike=true
+            if(this.courses[this.idx].comments[index].islike==false){
+                this.courses[this.idx].comments[index].total_likes = this.courses[this.idx].comments[index].total_likes + 1
+                this.courses[this.idx].comments[index].islike=true
+            }else{
+                this.courses[this.idx].comments[index].islike=false
+                this.courses[this.idx].comments[index].total_likes--
+            }
         },
         dislike(index) {
-            this.courses[this.idx].comments[index].total_dislikes = this.courses[this.idx].comments[index].total_dislikes + 1
-            this.courses[this.idx].comments[index].isdislike=true
-		}
+            if(this.courses[this.idx].comments[index].isdislike==false){
+                this.courses[this.idx].comments[index].total_dislikes = this.courses[this.idx].comments[index].total_dislikes + 1
+                this.courses[this.idx].comments[index].isdislike=true
+            }else{
+                this.courses[this.idx].comments[index].isdislike=false
+                this.courses[this.idx].comments[index].total_dislikes--
+            }
+            
+        },
+        
+
     }
      
   
@@ -360,10 +386,13 @@ html,body
 .modal
     max-height: 800px
     overflow: hidden
+
+    
 .modal-body
     max-height: 500px
     margin-top: -35px
     overflow-y: auto
+    
 .modal-dialog
     overflow-y: initial !important
 .score
@@ -448,7 +477,10 @@ html,body
     display: inline-block
     margin-right: 10px
     //border: solid 1px
+    padding: 15px
     width: 100px
+    
+   
     
     
 
@@ -456,7 +488,7 @@ html,body
 
 .like_text,.dislike_text
     display: inline-block
-    padding: 10px
+    color: $color_gray
     //border: solid 1px
 
 .like_img,.dislike_img
@@ -464,6 +496,9 @@ html,body
     height: 30px
     cursor: pointer
     display: inline-block
+.content
+    margin-top: 25px
+
     
 
 
