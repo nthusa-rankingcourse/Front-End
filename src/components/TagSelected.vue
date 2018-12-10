@@ -2,12 +2,12 @@
     <div>
         <div class="selectedTag">
             <span  class="tag" v-for="(item, idx) in selectedTags" :key="idx" @click="selectedTag(item)"> {{item}} </span>
-            <input class="search_bar taginput" id="search_box" placeholder="您想學習什麼課程？"/>
+            <input class="search_bar taginput" id="search_box" :placeholder= 'placeholder' @keyup.enter="goRank" />
         </div>
-        <ul class="first_layer">
-            <div class="abbtn_main class_name" @click="selectedTag('課程名稱 X')" >課程名稱</div>
-            <div class="abbtn_main professor_name" @click="selectedTag('教授名稱 X')">教授名稱</div>
-            <div class="abbtn_main department">院系
+        <ul class="first_layer" @mouseout="changePlaceholder('您想學習什麼課程？')">
+            <div class="abbtn_main class_name" @click="selectedTag('課程名稱 X')" @mouseover="changePlaceholder('請輸入課程名稱')">課程名稱</div>
+            <div class="abbtn_main professor_name" @click="selectedTag('教授名稱 X')"  @mouseover="changePlaceholder('請輸入教授名稱')"  > 教授名稱</div>
+            <div class="abbtn_main department" @mouseover="changePlaceholder('請點選欲查詢科系')">院系
                 <ul class="sec_layer"> 
                     <li class="abbtn_sub" v-for="(item,idx) in all_colleges" :key="idx"> 
                         <div class="college">{{item.college}}</div>
@@ -19,14 +19,14 @@
                     </li>
                 </ul>
             </div>
-            <div class="abbtn_main grade">年級
+            <div class="abbtn_main grade" @mouseover="changePlaceholder('請點選年級')">年級
                 <ul class="sec_layer">
                     <div class="abbtn_sub grade_click" v-for="(grade,idx) in grades" :key="idx"
                     @click="selectedTag(grade+' '+'X')">
                     {{grade}}</div>
                 </ul>
             </div>
-            <div class="abbtn_main timetable">空堂塞課
+            <div class="abbtn_main timetable" @mouseover="changePlaceholder('請點選課程時段')">空堂塞課
                 <ul class="sec_layer right">
           <table>
             <tbody>
@@ -121,7 +121,7 @@
 export default {
     data: function(){
         return{
-            
+            placeholder:'您想學習什麼課程？',
             selectedTags:[],
             First:[
                 {name:"M1", click: false},
@@ -319,6 +319,12 @@ export default {
           this.selectedTags.indexOf(message), 1);
       }
         },
+        goRank(){
+          this.$router.push({path:'/Rank'})
+        },
+        changePlaceholder(message){
+          this.placeholder=message
+        }
         
     }
 }

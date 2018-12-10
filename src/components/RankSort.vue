@@ -94,10 +94,6 @@
                     <h2 data-toggle="tooltip" data-placement="left" title="我們支援Markdown語法！">留言區</h2>
                     <form  v-on:submit.prevent='submit' >
                         <div class="form-group">
-
-                            
-                            
-                            
                             <textarea required="required" placeholder="在想些什麼？" v-model='input' class="form-control" ></textarea>
                             
                         </div>
@@ -112,7 +108,7 @@
 							</div>
 					</div>
                     <div class="list-group" >
-							<div class="list-group-item" v-for= "(comment,idx) in courses[idx].comments" :key="idx" >
+							<div class="list-group-item" v-for= "(comment,idx) in courses[idx].comments " :key="idx" v-if="idx<=9">
 								<strong>{{student_id}}   {{name}}</strong> 
                                 <p class="content"><vue-markdown :linkify="true" :emoji="true"
                                 table-class="table table-striped" >{{comment.comment}}</vue-markdown></p>
