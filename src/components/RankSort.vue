@@ -131,7 +131,8 @@
 						</div>
                 </div>
             </div>
-            <img class="fix" data-toggle="tooltip" data-placement="left" title="點我為這堂課評分！" src="../static/paper-plane.svg" alt="">
+            
+            <router-link :to="{path:'/Submit',query:{name:this.courses[this.idx].name}}"><img class="fix" @click='goSubmit()'  data-toggle="tooltip" data-placement="left" title="點我為這堂課評分！" src="../static/paper-plane.svg" alt=""></router-link>
             <div class="modal-footer">
                 
                 
@@ -153,18 +154,13 @@
 
 <script>
 import VueMarkdown from 'vue-markdown'
+import {eventBus} from '../main'
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
-
-
-
-
 export default {
-
-
 
     data: function(){
         return{
@@ -213,6 +209,9 @@ export default {
         window: function(idx){
             this.idx=idx;
         },
+        goSubmit(){
+            location. reload()
+        },
         getSingleTon: function (comment) {
 			return function () {
 				return {
@@ -247,6 +246,7 @@ export default {
             }
             
         },
+        
         
 
     }

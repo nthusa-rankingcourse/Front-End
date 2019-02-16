@@ -270,7 +270,7 @@ html,body
     position: absolute
     top: -30px
     left: 100%
-    z-index: 5
+    z-index: 10
     text-align: center
     background-color: $color_white
     transform: translate(120%,0%)
