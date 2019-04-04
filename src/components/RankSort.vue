@@ -3,7 +3,21 @@
 <div class="rankpage">
    
     <div class="container">
+        
         <div class="bar">
+            <div class="btn-group">
+                <button type="button" style="margin-bottom:25px" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    排序項目
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" type="button">涼度</button>
+                    <button class="dropdown-item" type="button">甜度</button>
+                    <button class="dropdown-item" type="button">互動程度</button>
+                    <button class="dropdown-item" type="button">無聊度</button>
+                    <button class="dropdown-item" type="button">用功時間</button>
+                    <button class="dropdown-item" type="button">資源滿意度</button>
+                </div>
+            </div>
             <tr class="items">
                 <td class="item item0">課程</td>
                 <td class="item item1">涼度</td>
@@ -156,12 +170,13 @@
 import VueMarkdown from 'vue-markdown'
 import {eventBus} from '../main'
 
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
 export default {
-
+    
     data: function(){
         return{
             name: "昂昂同學",
